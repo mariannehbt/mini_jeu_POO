@@ -1,14 +1,20 @@
 require 'bundler'
 Bundler.require
 
-require_relative 'lib/game'
+#require_relative 'lib/game'
 require_relative 'lib/player'
 
 # Au lancement de app_2.rb, on affiche dans le terminal un petit message de démarrage du jeu
-puts "------------------------------------------------
-|Bienvenue sur 'ILS VEULENT TOUS MA POO' !      |
-|Le but du jeu est d'être le dernier survivant !|
--------------------------------------------------"
+puts "
+  ______   _____    _____   _    _   _______ 
+ |  ____| |_   _|  / ____| | |  | | |__   __|
+ | |__      | |   | |  __  | |__| |    | |   
+ |  __|     | |   | | |_ | |  __  |    | |   
+ | |       _| |_  | |__| | | |  | |    | |   
+ |_|      |_____|  \_____| |_|  |_|    |_|   
+                                             
+                                             
+"
 
 # On initilise un joueur
 # Le jeu demande son prénom à l'utilisateur son prénom
@@ -44,6 +50,9 @@ while player0.life_points >0 && (player1.life_points > 0 || player2.life_points 
   # On laisse l'utilisateur effectuer une saisie
   print "> "
   human_player_choice = gets.chomp
+  puts
+  puts "**************************************"
+  puts
   # En fonction de la saisie :
   case human_player_choice
     # si l'utilisateur tape "a", on exécute sur son HumanPlayer la méthode qui le fait partir à la recherche d'une arme
@@ -59,13 +68,17 @@ while player0.life_points >0 && (player1.life_points > 0 || player2.life_points 
     when "2" then
       player0.attacks(player2)
   end
+  # Si tous les joueurs sont morts, on sort de la boucle
   break if player1.life_points == 0 && player2.life_points == 0
   puts
   # On fait en sorte que les 2 autres players attaquent l'utilisateur
   puts "Les autres joueurs t'attaquent !"
   enemies.each do |player|
+    # On vérifie que le joueur n'est pas mort
+    # Si il est vivant, il peut attaquer
     if player.life_points > 0
     player.attacks(player0)
+    # Si il est mort, il ne se passe rien et on teste le joueur suivant
     end
   end
 end
@@ -79,4 +92,4 @@ if player0.life_points > 0
   else puts "Loser ! Tu as perdu !"
 end
 
-binding.pry
+#binding.pry

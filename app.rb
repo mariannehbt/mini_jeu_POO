@@ -1,7 +1,7 @@
 require 'bundler'
 Bundler.require
 
-require_relative 'lib/game'
+#require_relative 'lib/game'
 require_relative 'lib/player'
 
 # On créé des instances (= joueurs) en définissant leurs variables d'instances @name
@@ -26,4 +26,4 @@ while player1.life_points > 0 && player2.life_points > 0 do
   break if player1.life_points == 0
 end
 
-binding.pry
+#binding.pry
