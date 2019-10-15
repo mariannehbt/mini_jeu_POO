@@ -16,8 +16,11 @@ while player1.life_points > 0 && player2.life_points > 0 do
   player1.show_state
   player2.show_state
   puts
+  # On fait les joueurs s'attaquer l'un l'autre jusqu'à ce que l'un des deux soit tué
   puts "Passons à la phase d'attaque :"
   player1.attacks(player2)
+  # Avant chaque attaque, on vérifie que l'autre jour est toujours en vie
+  # Si l'autre joueur est mort, on sort de la boucle
   break if player2.life_points == 0
   player2.attacks(player1)
   break if player1.life_points == 0
